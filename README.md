@@ -1,2 +1,2 @@
-# RogersBeaconFinder
- Automatic Rotator Controller with touch screen interface
+# BeaconFinder
+ Controller for YaesuRotator GX1000 UHF Beacon
