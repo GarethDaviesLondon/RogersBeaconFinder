@@ -16,7 +16,13 @@ Rotator::Rotator()
     pinMode(RotateRight,OUTPUT);
     digitalWrite(RotateRight,LOW);
     
-    Degree0 =eepromSettings::data.Degree0;
+    init();
+
+}
+
+void Rotator::init()
+{
+      Degree0 =eepromSettings::data.Degree0;
     Degree90 =eepromSettings::data.Degree90;
     Degree180 =eepromSettings::data.Degree180;
     Degree270 =eepromSettings::data.Degree270;
@@ -29,9 +35,7 @@ Rotator::Rotator()
     SlowStartDegrees =eepromSettings::data.SlowStartDegrees;
     SlowSpeed =eepromSettings::data.SlowSpeed;
     FastSpeed =eepromSettings::data.FastSpeed;
-
 }
-
 
 void Rotator::_setupRotator()
 {

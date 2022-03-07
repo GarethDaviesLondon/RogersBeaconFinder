@@ -421,7 +421,8 @@ int rotatorCalibratePage::loop()
           eepromSettings::data.Degree270 =  tmpDegree270;
           eepromSettings::data.Degree360 = tmpDegree360;
           eepromSettings::data.Degree450 = tmpDegree450;
-          eepromSettings::save();      
+          eepromSettings::save();
+          r->init();      
       break;
       case IDCANCEL:
           title->message="CANCELLED";

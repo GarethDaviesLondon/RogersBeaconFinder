@@ -21,6 +21,7 @@ public:
     int Abort();
     int ConvertToVoltage(int b);
     int ConvertToDegrees(int v);
+    void init();
 
 private:
     
