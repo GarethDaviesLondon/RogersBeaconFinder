@@ -3,6 +3,8 @@
 #include <TouchScreen.h>
 #include <stdint.h>
 #include "tftdisp.h"
+#include "settings.h"
+
 //#define DEBUG
 
 // The control pins for the LCD can be assigned to any digital or
@@ -163,7 +165,8 @@ void tftDISP::init()
     sm.width=100;
     sm.fontsize=1;
     sm.border=false;
-    sm.message="Calcluated from G30HH at IO87WD";
+    //sm.message="Calcluated from G30HH at IO87WD";
+    sm.message = STARTUPMESSAGE;
     sm.show();
     
 }

@@ -1,6 +1,6 @@
 #include "settings.h"
 #include <arduino.h>
-//#define DEBUGSETTINGS
+//#define DEBUGSETTINGS //Include this in the compile to debug any settings issues with the EEPROM
 
 
 eepromSettings::eepromSettings(int junk)
@@ -19,12 +19,12 @@ void eepromSettings::reset()
   _resetValues();
   save();
 }
-void eepromSettings::_resetValues()
+void eepromSettings::_resetValues() //This resets the EEPROM values to defaults in case of issues
 {
         data.checkversion=CHECKEEPROMVERSION;
 
-        strncpy(data.HomeCall,"G3OHH   ",8);
-        strncpy(data.HomeLocator,"IO83VC  ",8);
+        strncpy(data.HomeCall,HOMECALL,8);
+        strncpy(data.HomeLocator,HOMELOCATOR,8);
         
         data.lastBand = 1296;
         data.sort1296 = 1;
@@ -87,7 +87,8 @@ void eepromSettings::report()
 }
 
 
-bool eepromSettings::valid()
+bool eepromSettings::valid()  // This checks if there is valid data in the EEPROM 
+                              // If the byte order etc. are changed then 
 {
   byte d;
   d=EEPROM.read(0);
@@ -99,27 +100,42 @@ bool eepromSettings::valid()
 
 void eepromSettings::load()
 {
-  Serial.println("Loading EEPROM");
+  #ifdef DEBUGSETTINGS
+    Serial.println("Loading EEPROM");
+  #endif
+  
   int a;
   byte* p = (byte*) &data;
   for (a=0;a<sizeof(data);a++)
   {
     p[a]=EEPROM[a];
   }
-  Serial.println("Loading Settings");
+  
+  #ifdef DEBUGSETTINGS
+    Serial.println("Loading EEPROM");
+  #endif
+  
   report();
 }
 
 void eepromSettings::save()
 {
-  Serial.println("Saving EEPROM");
+  
+  #ifdef DEBUGSETTINGS
+    Serial.println("Saving EEPROM");
+  #endif
+  
     int a;
   byte* p = (byte*) &data;
   for (a=0;a<sizeof(data);a++)
   {
     EEPROM.update(a,p[a]);
-    //EEPROM[a]=p[a];
+    //EEPROM[a]=p[a];     //This format of command failed, so went with the original
   }
-  Serial.println("Saving Settings");
+  
+  #ifdef DEBUGSETTINGS
+    Serial.println("Saving Settings");
+  #endif
+  
   report();
 }

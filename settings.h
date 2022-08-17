@@ -6,6 +6,11 @@
                               //If this were critical could also do a checksum calculation on the data, but it's probably not
 
 
+#define STARTUPMESSAGE  "Calcluated from G30HH at IO87VC"
+#define HOMECALL "G3OHH   " //REQUIRES 8 CHARACTERS
+#define HOMELOCATOR "IO83VC  " //REQUIRES 8 CHARACTERS
+
+
 struct eepromData {
       unsigned char checkversion;
       char HomeCall[8];

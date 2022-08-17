@@ -1,9 +1,6 @@
 #include "rotatepage.h"
 #include <stdio.h>
 
-
-
-
 rotatePage::rotatePage(tftDISP* disp, myTS* tp, beaconTable* bt,Beacon *bIn, Rotator *rt, eepromSettings *set)
 {
     d = disp;
